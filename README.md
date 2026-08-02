@@ -2,7 +2,7 @@
 
 #### _Capstone Project 2021 for Specialist Diploma in Applied Artificial Intelligence_
 
-# Streamlit-Based LIME-Enhanced Machine Learning for Obesity Risk Classification
+# Streamlit-Based Machine Learning for Obesity Risk Classification with SHAP Explainability
 
 
 
