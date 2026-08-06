@@ -2,11 +2,11 @@
 
 #### _Capstone Project 2021 for Specialist Diploma in Applied Artificial Intelligence_
 
-# Streamlit-Based Machine Learning for Obesity Risk Classification with SHAP Explainability
+# Streamlit-Based Machine Learning for Diabetes Risk Classification with SHAP Explainability
 
 
 
 
 References:
 
-[1] Azad, M., Khan, M. F. K., & El-Ghany, S. A. (2025). XAI-Enhanced Machine Learning for Obesity Risk Classification: A Stacking Approach With LIME Explanations. IEEE Access, 13, 13847–13865. https://doi.org/10.1109/access.2025.3530840
+[1] Khan, N. S., Muaz, M. H., Kabir, A., & Islam, M. N. (2017). Diabetes Predicting mHealth Application Using Machine Learning. In IEEE Xplore (pp. 237–240). https://doi.org/10.1109/WIECON-ECE.2017.8468885
