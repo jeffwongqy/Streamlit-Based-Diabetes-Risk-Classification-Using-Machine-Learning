@@ -2,7 +2,7 @@
 
 #### _Capstone Project 2021 for Specialist Diploma in Applied Artificial Intelligence_
 
-# Streamlit-Based Machine Learning for Diabetes Risk Classification with SHAP Explainability
+# Streamlit-Based Machine Learning for Diabetes Risk Classification
 
 
 
