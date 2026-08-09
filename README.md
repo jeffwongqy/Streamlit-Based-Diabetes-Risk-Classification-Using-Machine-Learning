@@ -2,7 +2,7 @@
 
 #### _Capstone Project 2021 for Specialist Diploma in Applied Artificial Intelligence_
 
-# FastAPI-Based Diabetes Risk Classification Using Machine Learning
+# Streamlit-Based Diabetes Risk Classification Using Machine Learning
 
 
 
