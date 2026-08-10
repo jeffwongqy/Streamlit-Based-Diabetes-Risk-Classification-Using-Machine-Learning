@@ -4,6 +4,10 @@
 
 # Streamlit-Based Diabetes Risk Classification Using Machine Learning
 
+<img width="1200" height="675" alt="superfoods-for-diabetes" src="https://github.com/user-attachments/assets/5d1bee3c-dc88-4804-8081-f62a6ed61db1" />
+
+
+
 ## 1. Problem Statement
 During the COVID-19 period, disruptions to healthcare services and reduced access to routine medical screening created challenges in identifying individuals at higher risk of diabetes. A machine-learning-based classification system can help assess diabetes risk using available demographic and health-related factors, providing a quick and accessible way to support early risk identification.
 
