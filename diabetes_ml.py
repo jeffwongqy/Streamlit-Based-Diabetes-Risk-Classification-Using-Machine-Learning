@@ -299,7 +299,25 @@ plt.tight_layout()
 plt.savefig("confusion_matrix_dtc_test.png")
 plt.close()
 
+# feature importances
+best_rfc = gs_rfc.best_estimator_
+
+feature_importances = pd.DataFrame({"Feature": diabetes_df.drop(columns = ["diabetes"], axis = 1).columns, 
+                                    "Importances": best_rfc.feature_importances_})
+
+feature_importances = feature_importances.sort_values(by = "Importances", ascending = False)
+
+feature_importances.plot(kind = "bar")
+plt.title("Random Forest Importance Features")
+plt.xlabel("Features")
+plt.ylabel("Importance Score")
+plt.xticks(rotation = 45)
+plt.tight_layout()
+plt.savefig("random_forest_feature_importance.png")
+plt.close()
 
 # save the models and scalers
 joblib.dump(gs_rfc.best_estimator_, "random_forest_model.joblib")
 joblib.dump(scaler, "scaler.joblib")
+
+
