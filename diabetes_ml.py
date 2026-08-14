@@ -250,7 +250,7 @@ print("TEST: ")
 print(classification_report(y_test, y_pred_lg_test))
 
 # classification report for decision tree classifier
-print("Classification Report for Random Forest Classifier")
+print("Classification Report for Decision Tree Classifier")
 print("==================================================================")
 print("TRAIN: ")
 print(classification_report(y_train_res, y_pred_dtc_train))
