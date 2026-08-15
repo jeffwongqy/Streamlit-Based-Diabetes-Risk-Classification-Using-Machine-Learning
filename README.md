@@ -18,6 +18,49 @@ During the COVID-19 period, disruptions to healthcare services and reduced acces
 4. Evaluate model performance using accuracy, precision, recall, F1-score, and confusion matrices.
 5. Deploy the selected model through Streamlit to provide an interactive interface for users to enter patient information and obtain a diabetes-risk classification.
 
+## 3. Project Overview
+This project develops a machine learning-based diabetes risk classification system using patient-related demographic and health information. The workflow includes data preprocessing, exploratory data analysis, class imbalance handling, feature standardization, model training and hyperparameter tuning, model evaluation, feature importance analysis, and model deployment preparation. 
+
+Three machine learning classification algorithms were evaluated: 
+- Random Forest Classifier
+- Logistic Regression
+- Decision Tree Classifier
+
+The final workflow prepares the best-performing model for integration with a Streamlit application for diabetes risk prediction. 
+
+
+## 4. Imported Libaries
+The required Python libraries were imported to support the complete machine learning workflow. These libraries were used for:
+
+- Data manipulation and processing
+- Data visualization
+- Categorical data encoding
+- Feature standardization
+- Handling class imbalance
+- Machine learning model training
+- Hyperparameter tuning
+- Model evaluation
+- Saving trained models for deployment
+
+**Code Snippet:**
+``` python
+import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
+from sklearn.preprocessing import StandardScaler
+from imblearn.combine import SMOTEENN
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import joblib 
+
+
+
+```
+
 
 
 
