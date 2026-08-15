@@ -524,9 +524,7 @@ The trained machine learning model was prepared for integration into a Streamlit
 
 The demo implementation represents the final stage of the project, where the trained machine learning model is translated from an experimental model into an interactive application.
 
-
-
-
+<img width="1918" height="1078" alt="Screenshot 2026-08-15 091212" src="https://github.com/user-attachments/assets/a8f99644-9330-496d-ab2c-ef37d21ee6a5" />
 
 
 ## References:
