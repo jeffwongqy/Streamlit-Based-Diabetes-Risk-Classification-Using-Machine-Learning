@@ -320,7 +320,7 @@ Three classification models were trained:
 
 **GridSearchCV** was used to evaluate different hyperparameter combinations for each model. The tuning process used **5-fold Stratified Cross-Validation**, and the best configuration was selected based on accuracy.
 
-Code Snippet:
+**Code Snippet:**
 ```python
 # initialize stratified k-fold
 cv = StratifiedKFold(n_splits = 5, shuffle = True, random_state = 42)
