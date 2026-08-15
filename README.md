@@ -293,7 +293,6 @@ plt.savefig("after_resampling_diabetes.png")
 plt.close()
 ```
 
-
 ## 12. Feature Standardization
 **StandardScaler** was applied to the following numerical features:
 
@@ -312,8 +311,57 @@ X_test[['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']] = scaler.transform(
 
 ```
 
+## 13. Model Training and Hyperparameter Tuning
+Three classification models were trained:
+
+- Random Forest Classifier
+- Logistic Regression
+- Decision Tree Classifier
+
+**GridSearchCV** was used to evaluate different hyperparameter combinations for each model. The tuning process used **5-fold Stratified Cross-Validation**, and the best configuration was selected based on accuracy.
+
+Code Snippet:
+```python
+# initialize stratified k-fold
+cv = StratifiedKFold(n_splits = 5, shuffle = True, random_state = 42)
+
+# random forest classifier
+param_grid_rfc = {'n_estimators': [10, 20, 30, 40, 50], 
+                  'max_depth': [3, 5, 7]}
+gs_rfc = GridSearchCV(estimator = RandomForestClassifier(random_state = 42), 
+                        param_grid = param_grid_rfc, 
+                        cv = cv, 
+                        scoring = "accuracy", 
+                        n_jobs = 1, 
+                        return_train_score = True, 
+                        verbose = 3)
+gs_rfc.fit(X_train_res, y_train_res) 
 
 
+# logistic regression 
+param_grid_lg = {'C': [0.1, 0.01, 1]}
+gs_lg = GridSearchCV(estimator = LogisticRegression(random_state = 42), 
+                      param_grid = param_grid_lg, 
+                      cv = cv, 
+                      scoring = "accuracy", 
+                      n_jobs = 1, 
+                      return_train_score = True, 
+                      verbose = 3)
+gs_lg.fit(X_train_res, y_train_res)
+
+
+# decision trees classifier
+param_grid_dtc = { 'max_depth': [3, 5, 7]}
+gs_dtc = GridSearchCV(estimator = DecisionTreeClassifier(random_state = 42), 
+                      param_grid = param_grid_dtc, 
+                      cv = cv, 
+                      scoring = "accuracy", 
+                      n_jobs = 1, 
+                      return_train_score = True, 
+                      verbose = 3)
+gs_dtc.fit(X_train_res, y_train_res)
+
+```
 
 
 References:
