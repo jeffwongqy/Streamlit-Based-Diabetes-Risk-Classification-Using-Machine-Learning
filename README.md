@@ -522,6 +522,6 @@ joblib.dump(scaler, "scaler.joblib")
 
 
 
-References:
+## References:
 
 [1] Khan, N. S., Muaz, M. H., Kabir, A., & Islam, M. N. (2017). Diabetes Predicting mHealth Application Using Machine Learning. In IEEE Xplore (pp. 237–240). https://doi.org/10.1109/WIECON-ECE.2017.8468885
