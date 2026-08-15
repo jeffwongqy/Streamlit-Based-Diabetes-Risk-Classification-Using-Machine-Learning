@@ -519,6 +519,13 @@ joblib.dump(gs_rfc.best_estimator_, "random_forest_model.joblib")
 joblib.dump(scaler, "scaler.joblib")
 ```
 
+## 19. Streamlit Demo Implementation
+The trained machine learning model was prepared for integration into a Streamlit application. The application can load the saved model and scaler, accept user-provided input values, preprocess the inputs, and generate a diabetes risk prediction.
+
+The demo implementation represents the final stage of the project, where the trained machine learning model is translated from an experimental model into an interactive application.
+
+
+
 
 
 
