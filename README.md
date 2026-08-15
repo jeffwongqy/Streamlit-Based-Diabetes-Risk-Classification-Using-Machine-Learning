@@ -265,7 +265,20 @@ plt.ylabel("Count")
 plt.xticks(ticks = [0, 1], labels = ["No", "Yes"])
 plt.savefig("before_resampling_diabetes.png")
 plt.close()
+```
 
+## 11. Class Imbalance Handling
+**SMOTEENN** was applied to the training dataset to address the class imbalance.
+
+SMOTEENN combines:
+
+- SMOTE (Synthetic Minority Over-sampling Technique) to generate synthetic observations for the minority class.
+- ENN (Edited Nearest Neighbours) to remove potentially noisy or ambiguous observations.
+
+The technique was applied only to the training data to create a more balanced dataset for model training.
+
+**Code Snippet:**
+```python 
 # apply SMOTE-Tomek 
 smt = SMOTEENN(random_state = 42)
 X_train_res, y_train_res = smt.fit_resample(X_train, y_train)
@@ -278,8 +291,30 @@ plt.ylabel("Count")
 plt.xticks(ticks = [0, 1], labels = ["No", "Yes"])
 plt.savefig("after_resampling_diabetes.png")
 plt.close()
+```
+
+
+## 12. Feature Standardization
+**StandardScaler** was applied to the following numerical features:
+
+- Age
+- BMI
+- HbA1c level
+- Blood glucose level
+
+The scaler was fitted using only the resampled training data. The same fitted scaler was then used to transform the test data.
+
+**Code Snippet:**
+```python
+scaler = StandardScaler()
+X_train_res[['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']] = scaler.fit_transform(X_train_res[['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']])
+X_test[['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']] = scaler.transform(X_test[['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']])
 
 ```
+
+
+
+
 
 References:
 
