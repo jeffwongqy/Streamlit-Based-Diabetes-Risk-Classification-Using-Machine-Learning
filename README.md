@@ -363,6 +363,124 @@ gs_dtc.fit(X_train_res, y_train_res)
 
 ```
 
+## 14. Model Prediction
+Each optimized model was used to generate predictions for both:
+
+- The resampled training dataset
+- The unseen test dataset
+
+Predictions were generated for the Random Forest, Logistic Regression, and Decision Tree models. This allowed model performance to be compared between data used during training and completely unseen data.
+
+**Code Snippet:**
+```python
+# perform prediction on train set and test set
+y_pred_rfc_train = gs_rfc.predict(X_train_res)
+y_pred_rfc_test = gs_rfc.predict(X_test)
+
+y_pred_lg_train = gs_lg.predict(X_train_res)
+y_pred_lg_test = gs_lg.predict(X_test)
+
+y_pred_dtc_train = gs_dtc.predict(X_train_res)
+y_pred_dtc_test = gs_dtc.predict(X_test)
+```
+
+## 15. Model Evaluation 
+The three machine learning classifiers were evaluated using classification reports containing:
+
+- Precision
+- Recall
+- F1-score
+- Accuracy
+
+Both training and test results were examined to assess the predictive performance and potential overfitting of each model.
+
+**Code Snippet:**
+```python
+# classification report for random forest classifier
+print("Classification Report for Random Forest Classifier")
+print("==================================================================")
+print("TRAIN: ")
+print(classification_report(y_train_res, y_pred_rfc_train))
+print("TEST: ")
+print(classification_report(y_test, y_pred_rfc_test))
+
+# classification report for logistic regression
+print("Classification Report for Logistic Regression")
+print("==================================================================")
+print("TRAIN: ")
+print(classification_report(y_train_res, y_pred_lg_train))
+print("TEST: ")
+print(classification_report(y_test, y_pred_lg_test))
+
+# classification report for decision tree classifier
+print("Classification Report for Decision Tree Classifier")
+print("==================================================================")
+print("TRAIN: ")
+print(classification_report(y_train_res, y_pred_dtc_train))
+print("TEST: ")
+print(classification_report(y_test, y_pred_dtc_test))
+```
+
+
+## 16. Confusion Matrix Analysis
+Confusion matrices were generated for Random Forest, Logistic Regression, and Decision Tree classifiers on both the training and test datasets. The matrices were used to examine:
+
+- Correct non-diabetes predictions
+- Correct diabetes predictions
+- False positive predictions
+- False negative predictions
+
+This provides a more detailed evaluation of classification performance beyond overall accuracy.
+
+**Code Snippet:**
+```python
+# confusion matrix for random forest classifier
+disp_rfc_train = ConfusionMatrixDisplay.from_predictions(y_train_res, y_pred_rfc_train)
+plt.title("Confusion Matrix For Random Forest Classifier (TRAIN)")
+plt.tight_layout()
+plt.savefig("confusion_matrix_rfc_train.png")
+plt.close()
+
+disp_rfc_test = ConfusionMatrixDisplay.from_predictions(y_test, y_pred_rfc_test)
+plt.title("Confusion Matrix For Random Forest Classifier (TEST)")
+plt.tight_layout()
+plt.savefig("confusion_matrix_rfc_test.png")
+plt.close()
+
+
+
+# confusion matrix for logistic regression
+disp_lg_train = ConfusionMatrixDisplay.from_predictions(y_train_res, y_pred_lg_train)
+plt.title("Confusion Matrix For Logistic Regression (TRAIN)")
+plt.tight_layout()
+plt.savefig("confusion_matrix_lg_train.png")
+plt.close()
+
+disp_lg_test = ConfusionMatrixDisplay.from_predictions(y_test, y_pred_lg_test)
+plt.title("Confusion Matrix For Logistic Regression (TEST)")
+plt.tight_layout()
+plt.savefig("confusion_matrix_lg_test.png")
+plt.close()
+
+
+# confusion matrix for Decision Trees 
+disp_dtc_train = ConfusionMatrixDisplay.from_predictions(y_train_res, y_pred_dtc_train)
+plt.title("Confusion Matrix For Decision Tree Classifier (TRAIN)")
+plt.tight_layout()
+plt.savefig("confusion_matrix_dtc_train.png")
+plt.close()
+
+disp_dtc_test = ConfusionMatrixDisplay.from_predictions(y_test, y_pred_dtc_test)
+plt.title("Confusion Matrix For Decision Tree Classifier (TEST)")
+plt.tight_layout()
+plt.savefig("confusion_matrix_dtc_test.png")
+plt.close()
+
+
+```
+
+
+
 
 References:
 
