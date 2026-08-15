@@ -384,7 +384,7 @@ y_pred_dtc_train = gs_dtc.predict(X_train_res)
 y_pred_dtc_test = gs_dtc.predict(X_test)
 ```
 
-## 15. Model Evaluation 
+## 15. Classification Report
 The three machine learning classifiers were evaluated using classification reports containing:
 
 - Precision
