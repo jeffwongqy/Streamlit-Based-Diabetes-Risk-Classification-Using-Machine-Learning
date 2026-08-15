@@ -93,6 +93,55 @@ print(diabetes_df.isnull().sum())
 ```
 
 
+## 7. Categorical Encoding
+Machine learning algorithms require numerical input; therefore, categorical variables were converted into numerical representations.
+
+The following encoding was applied:
+- gender was converted into binary numerical values (0 and 1).
+- smoking_history was mapped into numerical categories ranging from 0 to 5.
+
+This transformation allowed the categorical variables to be used as input features for the machine learning models.
+
+**Code Snippet:**
+```python
+# define custom function for the gender conversion 
+def gender_to_numeric(gender):
+    if gender == "Female":
+        return 0 
+    else:
+        return 1 
+
+# use apply function to transform the categorical column into a numeric column 
+diabetes_df['gender'] = diabetes_df['gender'].apply(gender_to_numeric)
+
+# check the data
+print(diabetes_df.head())
+
+
+# define custom function for the smoking history conversion 
+def smoking_history_to_numeric(smoking):
+    if smoking == "current":
+        return 0
+    elif smoking == "ever":
+        return 1 
+    elif smoking == "former":
+        return 2
+    elif smoking == "never":
+        return 3
+    elif smoking == "not current":
+        return 4
+    elif smoking == "No Info":
+        return 5
+
+# use apply function to transform the categorical column into a numeric column 
+diabetes_df['smoking_history'] = diabetes_df['smoking_history'].apply(smoking_history_to_numeric)
+
+# check the data
+print(diabetes_df.head())
+
+```
+
+
 
 References:
 
