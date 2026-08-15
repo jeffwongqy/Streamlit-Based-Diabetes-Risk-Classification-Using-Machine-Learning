@@ -56,9 +56,21 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import joblib 
+```
 
 
+## 5. Load Data
+The diabetes dataset was loaded from data.csv. The initial records were displayed to understand the structure of the dataset, while the dataset information was inspected to identify the available features and their data types.
 
+**Code Snippet:**
+```python
+# load the data file 
+diabetes_df = pd.read_csv("data.csv")
+# display rows 
+print(diabetes_df.head())
+
+# display data info 
+print(diabetes_df.info())
 ```
 
 
