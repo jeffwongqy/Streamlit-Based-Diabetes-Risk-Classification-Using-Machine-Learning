@@ -97,8 +97,8 @@ print(diabetes_df.isnull().sum())
 Machine learning algorithms require numerical input; therefore, categorical variables were converted into numerical representations.
 
 The following encoding was applied:
-- gender was converted into binary numerical values (0 and 1).
-- smoking_history was mapped into numerical categories ranging from 0 to 5.
+- **gender** was converted into binary numerical values (0 and 1).
+- **smoking_history** was mapped into numerical categories ranging from 0 to 5.
 
 This transformation allowed the categorical variables to be used as input features for the machine learning models.
 
@@ -142,6 +142,144 @@ print(diabetes_df.head())
 ```
 
 
+## 8. Exploratory Data Analysis (EDA)
+Exploratory Data Analysis was conducted to examine the distributions of important features according to diabetes status. The analysis included variables such as:
+
+- Gender
+- Smoking history
+- Heart disease
+- Hypertension
+- BMI
+- Age
+- HbA1c level
+
+Visualisations were used to compare the distributions of these features between patients with and without diabetes.
+
+**Code Snippet:**
+```python
+# create a contigency table for gender and diabetes
+crosstab_gender_diab = pd.crosstab(diabetes_df['gender'], diabetes_df['diabetes'])
+# plot and save the chart for gender
+crosstab_gender_diab.plot(kind = "bar", stacked = False, figsize = (10, 5))
+plt.title("Gender Distribution by Diabetes Status")
+plt.xlabel("Gender")
+plt.ylabel("Count")
+plt.xticks(ticks = [0, 1], labels = ['Female', 'Male'])
+plt.savefig("gender_diabetes.png")
+plt.close()
+
+# plot and save the chart for age 
+diabetes_df.groupby("diabetes")["age"].plot(kind = "hist", legend = True, alpha = 0.6, bins = 20)
+plt.title("Age Distribution by Diabetes Status")
+plt.xlabel("Age")
+plt.ylabel("Frequency")
+plt.savefig("age_diabetes.png")
+plt.close()
+
+# plot and save the chart for hypertension 
+crosstab_hypertension = pd.crosstab(diabetes_df['hypertension'], diabetes_df['diabetes'])
+crosstab_hypertension.plot(kind = "bar", stacked = False, figsize = (10, 5))
+plt.title("Hypertension Distribution by Diabetes Status")
+plt.xlabel("Hypertension")
+plt.ylabel("Count")
+plt.xticks(ticks = [0, 1], labels = ['No', 'Yes'])
+plt.savefig("hypertension_diabetes.png")
+plt.close()
+
+# plot and save the chart for heart disease  
+crosstab_heartDisease = pd.crosstab(diabetes_df['heart_disease'], diabetes_df['diabetes'])
+crosstab_heartDisease.plot(kind = "bar", stacked = False, figsize = (10, 5))
+plt.title("Heart Disease Distribution by Diabetes Status")
+plt.xlabel("Heart Disease")
+plt.ylabel("Count")
+plt.xticks(ticks = [0, 1], labels = ['No', 'Yes'])
+plt.savefig("heartDisease_diabetes.png")
+plt.close()
+
+# plot and save the chart for smoke history  
+crosstab_smokeHistory = pd.crosstab(diabetes_df['smoking_history'], diabetes_df['diabetes'])
+crosstab_smokeHistory.plot(kind = "bar", stacked = False, figsize = (10, 5))
+plt.title("Smoking History Distribution by Diabetes Status")
+plt.xlabel("Smoking History")
+plt.ylabel("Count")
+plt.xticks(ticks = [0, 1, 2, 3, 4, 5], labels = ['current', 'ever', 'former', 'never', 'not current', 'no info'])
+plt.savefig("smokeHistory_diabetes.png")
+plt.close()
+
+# plot and save the chart for bmi
+diabetes_df.groupby("diabetes")["bmi"].plot(kind = "hist", legend = True, alpha = 0.6, bins = 20)
+plt.title("BMI Distribution by Diabetes Status")
+plt.xlabel("BMI")
+plt.ylabel("Frequency")
+plt.savefig("bmi_diabetes.png")
+plt.close()
+
+# plot and save the chart for hbac1 level
+diabetes_df.groupby("diabetes")["HbA1c_level"].plot(kind = "hist", legend = True, alpha = 0.6, bins = 20)
+plt.title("HbA1c Level Distribution by Diabetes Status")
+plt.xlabel("HbA1c")
+plt.ylabel("Frequency")
+plt.savefig("hba1c_diabetes.png")
+plt.close()
+
+# plot and save the chart for blood glucose level
+diabetes_df.groupby("diabetes")["blood_glucose_level"].plot(kind = "hist", legend = True, alpha = 0.6, bins = 20)
+plt.title("Blood Glucose Level Distribution by Diabetes Status")
+plt.xlabel("Blood Glucose Level")
+plt.ylabel("Frequency")
+plt.savefig("blood_glucose_level_diabetes.png")
+plt.close()
+```
+
+
+## 9. Train-Test Split
+The dataset was divided into:
+
+- 80% training data
+- 20% testing data
+
+**Stratified sampling** was applied during the split to maintain a similar distribution of diabetes classes in both the training and testing datasets.
+
+**Code Snippet:**
+```python
+# split the data into 80% training and 20% testing 
+X_train, X_test, y_train, y_test = train_test_split(diabetes_df.drop(columns = ['diabetes'], axis = 1), 
+                                                    diabetes_df['diabetes'], 
+                                                    test_size = 0.20, 
+                                                    shuffle = True, 
+                                                    stratify = diabetes_df['diabetes'], 
+                                                    random_state = 42)
+
+```
+
+## 10. Class Distribution Analysis
+The distribution of diabetes classes in the training dataset was examined before applying any resampling technique. A bar chart was generated to compare the number of observations belonging to the non-diabetes and diabetes classes.
+
+**Code Snippet:**
+```python
+# before applying resampling 
+y_train.value_counts().plot(kind = "bar", color = ['crimson', 'navy'])
+plt.title("Distribution of Diabetes (Before Resampling)")
+plt.xlabel("Diabetes")
+plt.ylabel("Count")
+plt.xticks(ticks = [0, 1], labels = ["No", "Yes"])
+plt.savefig("before_resampling_diabetes.png")
+plt.close()
+
+# apply SMOTE-Tomek 
+smt = SMOTEENN(random_state = 42)
+X_train_res, y_train_res = smt.fit_resample(X_train, y_train)
+
+# after applying resampling 
+y_train_res.value_counts().plot(kind = "bar", color = ['crimson', 'navy'])
+plt.title("Distribution of Diabetes (After Resampling)")
+plt.xlabel("Diabetes")
+plt.ylabel("Count")
+plt.xticks(ticks = [0, 1], labels = ["No", "Yes"])
+plt.savefig("after_resampling_diabetes.png")
+plt.close()
+
+```
 
 References:
 
