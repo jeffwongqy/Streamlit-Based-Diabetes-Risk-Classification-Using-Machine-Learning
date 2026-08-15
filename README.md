@@ -475,8 +475,48 @@ plt.title("Confusion Matrix For Decision Tree Classifier (TEST)")
 plt.tight_layout()
 plt.savefig("confusion_matrix_dtc_test.png")
 plt.close()
+```
 
+## 17. Feature Importance Analysis
+Feature importance analysis was performed using the selected Random Forest model. The Random Forest feature importance scores were visualised to identify which input variables contributed most strongly to the model's diabetes classification decisions.
 
+**Code Snippet:**
+```python
+# feature importances
+best_rfc = gs_rfc.best_estimator_
+
+feature_importances = pd.DataFrame({"Feature": diabetes_df.drop(columns = ["diabetes"], axis = 1).columns, 
+                                    "Importances": best_rfc.feature_importances_})
+
+feature_importances = feature_importances.sort_values(by = "Importances", ascending = False)
+
+feature_importances.plot(kind = "bar")
+plt.title("Random Forest Importance Features")
+plt.xlabel("Features")
+plt.ylabel("Importance Score")
+plt.xticks(rotation = 45)
+plt.tight_layout()
+plt.savefig("random_forest_feature_importance.png")
+plt.close()
+
+```
+
+## 18. Model Deployment Preparation
+The best Random Forest estimator obtained from GridSearchCV was saved as:
+
+`random_forest_model.joblib`
+
+The fitted StandardScaler was saved as:
+
+`scaler.joblib`
+
+These files can later be loaded by an application or API to preprocess new input data and generate diabetes risk predictions.
+
+**Code Snippet:**
+```python
+# save the models and scalers
+joblib.dump(gs_rfc.best_estimator_, "random_forest_model.joblib")
+joblib.dump(scaler, "scaler.joblib")
 ```
 
 
