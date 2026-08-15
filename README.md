@@ -73,6 +73,24 @@ print(diabetes_df.head())
 print(diabetes_df.info())
 ```
 
+## 6. Data Inspection and Cleaning
+The dataset was inspected for duplicate and missing values before model development. Duplicate records were removed to reduce repeated observations, and the dataset was checked again to confirm that duplicates had been successfully removed. Missing values were also examined before proceeding with modelling.
+
+**Code Snippet:**
+```python
+# check the number of duplicated rows 
+print(diabetes_df.duplicated().sum())
+
+# remove duplicateed rows 
+diabetes_df.drop_duplicates(inplace = True)
+
+# re-check the number of duplicated rows
+print(diabetes_df.duplicated().sum())
+
+# check the number of missing data in each col 
+print(diabetes_df.isnull().sum())
+
+```
 
 
 
